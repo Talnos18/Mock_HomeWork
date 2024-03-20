@@ -37,12 +37,17 @@ public class MainController {
             BigDecimal maxLimit;
             String rqUID = requestDTO.getRqUID();
 
+            String currency;
+
             if (firstDigit == '8') {
                 maxLimit = new BigDecimal(2000);
+                currency = "US";
             } else if (firstDigit == '9') {
                 maxLimit = new BigDecimal(1000);
+                currency = "EU";
             } else {
                 maxLimit = new BigDecimal(10000);
+                currency = "RUB";
             }
 
             BigDecimal balance = new BigDecimal(random.nextDouble()).multiply(maxLimit);
@@ -53,16 +58,6 @@ public class MainController {
             responseDTO.setRqUID(rqUID);
             responseDTO.setClientId(clientId);
             responseDTO.setAccount(requestDTO.getAccount());
-
-            String currency;
-            if (firstDigit == '8') {
-                currency = "US";
-            } else if (firstDigit == '9') {
-                currency = "EU";
-            } else {
-                currency = "RUB";
-            }
-
             responseDTO.setCurrency(currency);
             responseDTO.setBalance(balance);
             responseDTO.setMaxLimit(maxLimit);
